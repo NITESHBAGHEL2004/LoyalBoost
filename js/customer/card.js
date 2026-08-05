@@ -37,15 +37,17 @@ function renderCard(customer, settings, coupon, history) {
     <div class="glass section" style="padding: var(--sp-6); margin-top: var(--sp-5);">
       <h3>Visit History</h3>
       <div class="timeline">
-        ${history.length ? history.map(h => `
-          <div class="timeline-item">
+        ${history.length ? history.map(h => {
+          const isReward = h.type === 'reward' || (h.service && h.service.includes('🎁'));
+          return `
+          <div class="timeline-item ${isReward ? 'is-reward' : ''}">
             <div class="timeline-dot"></div>
             <div>
               <div class="timeline-date">${formatDate(h.date)}</div>
               <div class="timeline-title">${escapeHtml(h.service || 'Visit')}</div>
             </div>
           </div>
-        `).join('') : '<p>No visits recorded yet.</p>'}
+        `;}).join('') : '<p>No visits recorded yet.</p>'}
       </div>
     </div>
     <div class="share-bar">

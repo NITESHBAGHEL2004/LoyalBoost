@@ -300,6 +300,12 @@ function actionRedeemCoupon(code) {
     const custSheet = getSheet(SHEET_CUSTOMERS);
     custSheet.getRange(custFound.rowIndex, CUSTOMER_HEADERS.indexOf('RewardStatus') + 1).setValue('none');
     custSheet.getRange(custFound.rowIndex, CUSTOMER_HEADERS.indexOf('RewardRedeemed') + 1).setValue(true);
+
+    // Save reward claim event to customer's VisitHistory
+    const history = parseVisitHistory(custFound.obj.VisitHistory);
+    const rewardText = found.obj.RewardText || 'Free Reward';
+    history.push({ date: now, service: '🎁 Claimed Reward: ' + rewardText, type: 'reward' });
+    custSheet.getRange(custFound.rowIndex, CUSTOMER_HEADERS.indexOf('VisitHistory') + 1).setValue(safeCellValue(JSON.stringify(history)));
   }
   return { code: code, status: 'Redeemed', redeemedDate: now };
 }

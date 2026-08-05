@@ -183,7 +183,16 @@ export async function mockApi(action, payload = {}) {
       coupon.status = 'Redeemed';
       coupon.redeemedDate = todayISO();
       const c = db.customers.find(c => c.customerId === coupon.customerId);
-      if (c) { c.rewardStatus = 'none'; c.rewardRedeemed = true; }
+      if (c) {
+        c.rewardStatus = 'none';
+        c.rewardRedeemed = true;
+        c.visitHistory = c.visitHistory || [];
+        c.visitHistory.push({
+          date: todayISO(),
+          service: '🎁 Claimed Reward: ' + (coupon.rewardText || 'Free Reward'),
+          type: 'reward'
+        });
+      }
       save(db);
       return coupon;
     }

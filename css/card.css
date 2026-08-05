@@ -72,6 +72,15 @@
 .timeline-dot{ width:11px; height:11px; border-radius:50%; background: var(--accent-2); margin-top: 4px; flex-shrink:0; }
 .timeline-date{ font-size: var(--fs-xs); color: var(--text-tertiary); text-transform:uppercase; letter-spacing:.05em; }
 .timeline-title{ font-weight:600; }
+.timeline-item.is-reward .timeline-dot {
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+  box-shadow: 0 0 10px rgba(246,196,83,0.5);
+  transform: scale(1.25);
+}
+.timeline-item.is-reward .timeline-title {
+  color: var(--gold-1);
+  font-weight: 700;
+}
 
 /* ---------- Reward popup ---------- */
 .reward-popup{ text-align:center; padding: var(--sp-8) var(--sp-6); }
