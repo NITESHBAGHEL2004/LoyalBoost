@@ -92,11 +92,26 @@ function renderRows(customers) {
       <td>${formatDate(c.createdDate)}</td>
       <td>
         <div class="row-actions">
-          <button class="btn btn-icon btn-ghost" title="Add Visit" data-action="visit" data-id="${c.customerId}">＋</button>
-          <button class="btn btn-icon btn-ghost" title="View Card" data-action="view" data-id="${c.customerId}">🪪</button>
-          <button class="btn btn-icon btn-ghost" title="Send Card via WhatsApp" data-action="whatsapp" data-id="${c.customerId}">📤</button>
-          <button class="btn btn-icon btn-ghost" title="Edit" data-action="edit" data-id="${c.customerId}">✎</button>
-          <button class="btn btn-icon btn-danger" title="Delete" data-action="delete" data-id="${c.customerId}">🗑</button>
+          <button class="action-btn action-visit" title="Add Visit" data-action="visit" data-id="${c.customerId}">
+            <span class="action-btn-icon">＋</span>
+            <span class="action-btn-label">Visit</span>
+          </button>
+          <button class="action-btn action-view" title="View Card" data-action="view" data-id="${c.customerId}">
+            <span class="action-btn-icon">🪪</span>
+            <span class="action-btn-label">Card</span>
+          </button>
+          <button class="action-btn action-whatsapp" title="Send Card via WhatsApp" data-action="whatsapp" data-id="${c.customerId}">
+            <span class="action-btn-icon">📤</span>
+            <span class="action-btn-label">WhatsApp</span>
+          </button>
+          <button class="action-btn action-edit" title="Edit Customer" data-action="edit" data-id="${c.customerId}">
+            <span class="action-btn-icon">✎</span>
+            <span class="action-btn-label">Edit</span>
+          </button>
+          <button class="action-btn action-delete" title="Delete Customer" data-action="delete" data-id="${c.customerId}">
+            <span class="action-btn-icon">🗑</span>
+            <span class="action-btn-label">Delete</span>
+          </button>
         </div>
       </td>
     </tr>
