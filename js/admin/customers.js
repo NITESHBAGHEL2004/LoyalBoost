@@ -215,7 +215,8 @@ async function onAddVisit(id) {
 }
 
 function toKeycap(n) {
-  return String(n).split('').map(d => (d >= '0' && d <= '9' ? d + '\uFE0F\u20E3' : d)).join('');
+  const keycaps = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
+  return String(n).split('').map(d => (d >= '0' && d <= '9' ? keycaps[parseInt(d, 10)] : d)).join('');
 }
 
 function buildCardMessage(customer) {
@@ -227,7 +228,26 @@ function buildCardMessage(customer) {
   const visitsKeycap = toKeycap(visits);
   const requiredKeycap = toKeycap(required);
 
-  return `✨ *Welcome to ${bizName}!*\n\nHi *${customer.name}*, thank you for becoming a valued customer! ❤️\n\n🪪 *Your Digital Loyalty Card is now active.*\n\n📍 *Current Progress:* *${visitsKeycap} / ${requiredKeycap}* Visits\n🎁 *Unlock Reward:* *${reward}*\n\nEvery eligible visit earns you a stamp. Complete all *${required} visits* to claim your reward!\n\n*Access your loyalty card anytime:*\n👇\n${link}\n\nThank you for your support. We can't wait to welcome you back! 🌟`;
+  const lines = [
+    `✨ *Welcome to ${bizName}!*`,
+    ``,
+    `Hi *${customer.name}*, thank you for becoming a valued customer! ❤️`,
+    ``,
+    `🪪 *Your Digital Loyalty Card is now active.*`,
+    ``,
+    `📍 *Current Progress:* *${visitsKeycap} / ${requiredKeycap}* Visits`,
+    `🎁 *Unlock Reward:* *${reward}*`,
+    ``,
+    `Every eligible visit earns you a stamp. Complete all *${required} visits* to claim your reward!`,
+    ``,
+    `*Access your loyalty card anytime:*`,
+    `👇`,
+    `${link}`,
+    ``,
+    `Thank you for your support. We can't wait to welcome you back! 🌟`
+  ];
+
+  return lines.join('\r\n');
 }
 
 async function sendCardViaWhatsApp(id) {
