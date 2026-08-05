@@ -216,8 +216,12 @@ async function onAddVisit(id) {
 
 function buildCardMessage(customer) {
   const link = getPublicCardUrl(customer.qrId);
-  const wave = '\u{1F44B}'; // 👋
-  return `Hi ${customer.name}! ${wave} Here's your ${settings.businessName || 'loyalty'} card — you're at ${customer.visitCount}/${customer.requiredVisits} visits toward ${settings.rewardName}.\n\nView your card anytime here: ${link}`;
+  const bizName = settings.businessName || 'LoyalBoost';
+  const reward = settings.rewardName || 'Free Reward';
+  const visits = customer.visitCount || 0;
+  const required = customer.requiredVisits || settings.requiredVisits || 8;
+
+  return `Hello ${customer.name}! 👋✨\n\nWelcome to *${bizName}*! 🏢🎉\n\nYou have completed *${visits}/${required}* visits towards your reward: *${reward}* 🎁\n\nTrack your stamps and view your digital loyalty card anytime here:\n👇\n${link}`;
 }
 
 async function sendCardViaWhatsApp(id) {

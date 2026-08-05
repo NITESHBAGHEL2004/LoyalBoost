@@ -59,8 +59,12 @@ function renderCard(customer, settings, coupon, history) {
 
   $('#share-whatsapp').addEventListener('click', () => {
     const link = getPublicCardUrl(customer.qrId);
-    const party = '\u{1F389}'; // 🎉
-    const text = `${party} I'm ${customer.visitCount} of ${customer.requiredVisits} visits toward ${settings.rewardName} at ${settings.businessName}!\n\nView my card anytime here: ${link}`;
+    const bizName = settings.businessName || 'LoyalBoost';
+    const reward = settings.rewardName || 'Free Reward';
+    const visits = customer.visitCount || 0;
+    const required = customer.requiredVisits || settings.requiredVisits || 8;
+
+    const text = `Hello ${customer.name}! 👋✨\n\nWelcome to *${bizName}*! 🏢🎉\n\nYou have completed *${visits}/${required}* visits towards your reward: *${reward}* 🎁\n\nTrack your stamps and view your digital loyalty card anytime here:\n👇\n${link}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   });
 
