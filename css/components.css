@@ -110,7 +110,37 @@ table.data-table{ width:100%; border-collapse: collapse; min-width: 720px; }
 }
 .modal-backdrop.open .modal{ transform: translateY(0) scale(1); opacity:1; }
 .modal-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--sp-5); }
-.modal-close{ background:none; border:none; color: var(--text-tertiary); font-size: 1.4rem; line-height:1; }
+.modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+.modal-close:hover {
+  background: rgba(251, 91, 91, 0.18);
+  border-color: rgba(251, 91, 91, 0.45);
+  color: #FB5B5B;
+  transform: rotate(90deg) scale(1.12);
+  box-shadow: 0 4px 14px rgba(251, 91, 91, 0.35);
+}
+.modal-close:active {
+  transform: rotate(90deg) scale(0.92);
+}
 
 /* ---------- Toast ---------- */
 .toast-stack{ position: fixed; bottom: var(--sp-6); right: var(--sp-6); display:flex; flex-direction:column; gap: var(--sp-2); z-index: 300; }
