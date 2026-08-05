@@ -28,8 +28,8 @@
           <input class="input" id="c-name" required>
         </div>
         <div class="field">
-          <label for="c-mobile">Mobile Number</label>
-          <input class="input" id="c-mobile" type="tel" required>
+          <label for="c-mobile">Mobile Number (10 Digits)</label>
+          <input class="input" id="c-mobile" type="tel" pattern="[0-9]{10}" maxlength="10" minlength="10" inputmode="numeric" placeholder="e.g. 9876543210" title="Please enter exactly 10 digits" required>
         </div>
         <div class="field">
           <label for="c-email">Email</label>

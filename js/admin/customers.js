@@ -47,6 +47,9 @@ async function init() {
   $('#customer-modal-close').addEventListener('click', () => closeModal(custModal));
   $('#card-modal-close').addEventListener('click', () => closeModal(cardModal));
   $('#customer-form').addEventListener('submit', onSaveCustomer);
+  $('#c-mobile')?.addEventListener('input', (e) => {
+    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+  });
 
   if (qsParam('new') === '1') openAddModal();
 
@@ -173,9 +176,17 @@ async function openEditModal(id) {
 async function onSaveCustomer(e) {
   e.preventDefault();
   const id = $('#c-id').value;
+  const rawMobile = $('#c-mobile').value.trim().replace(/\D/g, '');
+
+  if (rawMobile.length !== 10) {
+    toast('Please enter a valid 10-digit mobile number', 'error');
+    $('#c-mobile').focus();
+    return;
+  }
+
   const payload = {
     name: $('#c-name').value.trim(),
-    mobile: $('#c-mobile').value.trim(),
+    mobile: rawMobile,
     email: $('#c-email').value.trim(),
     dob: $('#c-dob').value,
     membership: $('#c-membership').value,

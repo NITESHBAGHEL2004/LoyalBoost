@@ -50,47 +50,9 @@ function renderCard(customer, settings, coupon, history) {
         `;}).join('') : '<p>No visits recorded yet.</p>'}
       </div>
     </div>
-    <div class="share-bar">
-      <button class="btn btn-primary" id="share-whatsapp">📤 Share on WhatsApp</button>
-    </div>
   `;
 
   renderCardQR($('#wc-qr'), customer.qrId);
-
-  $('#share-whatsapp').addEventListener('click', () => {
-    const link = getPublicCardUrl(customer.qrId);
-    const bizName = settings.businessName || 'LoyalBoost';
-    const reward = settings.rewardName || 'Free Reward';
-    const visits = customer.visitCount || 0;
-    const required = customer.requiredVisits || settings.requiredVisits || 8;
-
-    const keycaps = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣'];
-    const toKc = n => String(n).split('').map(d => (d >= '0' && d <= '9' ? keycaps[parseInt(d, 10)] : d)).join('');
-    const visitsKeycap = toKc(visits);
-    const requiredKeycap = toKc(required);
-
-    const lines = [
-      `✨ *Welcome to ${bizName}!*`,
-      ``,
-      `Hi *${customer.name}*, thank you for becoming a valued customer! ❤️`,
-      ``,
-      `🪪 *Your Digital Loyalty Card is now active.*`,
-      ``,
-      `📍 *Current Progress:* *${visitsKeycap} / ${requiredKeycap}* Visits`,
-      `🎁 *Unlock Reward:* *${reward}*`,
-      ``,
-      `Every eligible visit earns you a stamp. Complete all *${required} visits* to claim your reward!`,
-      ``,
-      `*Access your loyalty card anytime:*`,
-      `👇`,
-      `${link}`,
-      ``,
-      `Thank you for your support. We can't wait to welcome you back! 🌟`
-    ];
-
-    const text = lines.join('\r\n');
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-  });
 
   const redeemBtn = $('#redeem-coupon-btn');
   if (redeemBtn) {
