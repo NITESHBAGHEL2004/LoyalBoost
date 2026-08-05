@@ -1,0 +1,109 @@
+.card-screen{ min-height:100vh; display:flex; flex-direction:column; align-items:center; padding: var(--sp-7) var(--sp-4) var(--sp-9); }
+.card-screen .container{ width: min(440px, 100%); }
+
+/* ---------- Wallet card ---------- */
+.wallet-card{
+  position: relative; overflow: hidden;
+  border-radius: var(--r-xl);
+  padding: var(--sp-6);
+  background: linear-gradient(160deg, color-mix(in srgb, var(--accent-1) 88%, black), color-mix(in srgb, var(--accent-2) 70%, black) 120%);
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  isolation: isolate;
+}
+.wallet-card::before{
+  /* subtle noise/glass texture */
+  content:""; position:absolute; inset:0;
+  background: radial-gradient(circle at 100% 0%, rgba(255,255,255,.16), transparent 55%);
+  pointer-events:none;
+}
+.wallet-card .wc-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--sp-6); position:relative; z-index:1; }
+.wallet-card .wc-brand{ display:flex; align-items:center; gap:10px; }
+.wallet-card .wc-logo{ width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; font-weight:700; overflow:hidden; }
+.wallet-card .wc-logo img{ width:100%; height:100%; object-fit:cover; }
+.wallet-card .wc-biz-name{ font-family: var(--font-display); font-weight:700; font-size: var(--fs-md); }
+.wallet-card .wc-biz-cat{ font-size: var(--fs-xs); opacity:.75; text-transform:capitalize; }
+
+.wallet-card .wc-person{ display:flex; align-items:center; gap: 14px; margin-bottom: var(--sp-6); position:relative; z-index:1; }
+.wc-photo{ width:56px; height:56px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,.4); background: rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; }
+.wc-person .name{ font-family: var(--font-display); font-size: var(--fs-md); font-weight:700; }
+.wc-person .id{ font-size: var(--fs-xs); opacity:.7; letter-spacing:.04em; }
+
+.wc-membership{ position:absolute; top: var(--sp-6); right: var(--sp-6); z-index:2; }
+
+.wc-reward{ position:relative; z-index:1; margin-bottom: var(--sp-5); }
+.wc-reward .reward-name{ font-family: var(--font-display); font-weight:700; font-size: var(--fs-lg); }
+.wc-reward .reward-desc{ font-size: var(--fs-sm); opacity:.8; margin:0; }
+
+/* ---------- Stamp grid ---------- */
+.stamp-grid{ display:flex; flex-wrap:wrap; gap: 12px; position:relative; z-index:1; margin-bottom: var(--sp-5); }
+.stamp{
+  position:relative;
+  width: 46px; height: 46px; border-radius:50%;
+  background: rgba(255,255,255,0.10);
+  border: 1.5px dashed rgba(255,255,255,0.35);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 1.15rem;
+}
+.stamp.filled{
+  background: rgba(255,255,255,0.92);
+  border-style: solid; border-color: rgba(255,255,255,0.92);
+  box-shadow: 0 6px 16px rgba(0,0,0,.25);
+}
+.stamp .empty-dot{ width:6px; height:6px; border-radius:50%; background: rgba(255,255,255,.35); }
+
+.wc-progress-label{ font-size: var(--fs-xs); opacity:.75; position:relative; z-index:1; margin-bottom: var(--sp-5); }
+
+.wc-bottom{ display:flex; align-items:center; justify-content:space-between; position:relative; z-index:1; padding-top: var(--sp-4); border-top: 1px dashed rgba(255,255,255,.25); }
+.wc-qr{ background:#fff; padding:6px; border-radius: 10px; }
+.wc-qr canvas, .wc-qr img{ display:block; width:74px; height:74px; }
+.wc-actions{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+
+/* perforation notches for wallet feel */
+.wallet-card .notch{ position:absolute; width:22px; height:22px; background: var(--bg); border-radius:50%; top:50%; transform: translateY(-50%); z-index:3; }
+.wallet-card .notch.left{ left:-11px; }
+.wallet-card .notch.right{ right:-11px; }
+
+/* ---------- Visit history timeline ---------- */
+.timeline{ margin-top: var(--sp-6); }
+.timeline-item{ display:flex; gap: var(--sp-4); padding-bottom: var(--sp-5); position:relative; }
+.timeline-item::before{ content:""; position:absolute; left:5px; top:20px; bottom:0; width:1px; background: var(--border-hairline); }
+.timeline-item:last-child::before{ display:none; }
+.timeline-dot{ width:11px; height:11px; border-radius:50%; background: var(--accent-2); margin-top: 4px; flex-shrink:0; }
+.timeline-date{ font-size: var(--fs-xs); color: var(--text-tertiary); text-transform:uppercase; letter-spacing:.05em; }
+.timeline-title{ font-weight:600; }
+
+/* ---------- Reward popup ---------- */
+.reward-popup{ text-align:center; padding: var(--sp-8) var(--sp-6); }
+.reward-popup .burst{
+  width:84px; height:84px; margin:0 auto var(--sp-4); border-radius:50%;
+  background: linear-gradient(135deg, var(--gold-1), var(--gold-2));
+  display:flex; align-items:center; justify-content:center; font-size:2.2rem;
+  box-shadow: 0 0 0 10px rgba(246,196,83,0.12);
+}
+.reward-popup h2{ margin-bottom: 4px; }
+.reward-popup .unlocked{ font-family: var(--font-display); font-weight:700; font-size: var(--fs-xl); background: linear-gradient(135deg, var(--gold-1), var(--gold-2)); -webkit-background-clip:text; background-clip:text; color:transparent; margin: var(--sp-3) 0 var(--sp-5); }
+.reward-popup .popup-actions{ display:flex; gap: var(--sp-3); justify-content:center; margin-top: var(--sp-5); }
+
+/* ---------- Coupon ---------- */
+.coupon{
+  border-radius: var(--r-lg); overflow:hidden; display:flex; background: var(--bg-card); border: 1px solid var(--border-hairline);
+}
+.coupon-strip{ width: 10px; background: repeating-linear-gradient(180deg, var(--gold-1) 0 8px, transparent 8px 16px); }
+.coupon-body{ padding: var(--sp-5); flex:1; }
+.coupon-code{ font-family: var(--font-display); font-size: var(--fs-lg); font-weight:700; letter-spacing: .04em; }
+.coupon-status{ margin-top:6px; }
+
+/* ---------- Scratch card ---------- */
+.scratch-wrap{ position:relative; border-radius: var(--r-lg); overflow:hidden; height: 190px; }
+.scratch-result{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:6px; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); color:#fff; text-align:center; padding: var(--sp-4); }
+.scratch-result .prize{ font-family: var(--font-display); font-weight:700; font-size: var(--fs-lg); }
+.scratch-canvas{ position:absolute; inset:0; cursor: grab; touch-action: none; }
+
+/* ---------- WhatsApp share bar ---------- */
+.share-bar{ display:flex; gap: var(--sp-3); margin-top: var(--sp-6); }
+.share-bar .btn{ flex:1; }
+
+@media (max-width: 420px){
+  .stamp{ width: 40px; height:40px; }
+}

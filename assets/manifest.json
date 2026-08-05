@@ -1,0 +1,13 @@
+{
+  "name": "LoyalBoost — Digital Loyalty Card",
+  "short_name": "LoyalBoost",
+  "description": "Your digital loyalty stamp card.",
+  "start_url": "../customer/card.html",
+  "display": "standalone",
+  "background_color": "#0A0B10",
+  "theme_color": "#0A0B10",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

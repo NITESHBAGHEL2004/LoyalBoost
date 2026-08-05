@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in · LoyalBoost</title>
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+  <div class="auth-screen">
+    <div class="glass auth-card card-rise">
+      <div class="auth-logo">💎</div>
+      <h1>LoyalBoost</h1>
+      <p class="sub">Sign in to your business dashboard</p>
+
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label for="username">Username</label>
+          <input class="input" type="text" id="username" name="username" autocomplete="username" placeholder="admin" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input class="input" type="password" id="password" name="password" autocomplete="current-password" placeholder="••••••••" required>
+        </div>
+        <div class="auth-error" id="auth-error" role="alert"></div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="remember" checked> Remember me on this device
+        </label>
+        <button class="btn btn-primary" type="submit" id="login-btn" style="width:100%; margin-top: var(--sp-5);">
+          <span id="login-btn-label">Sign in</span>
+        </button>
+      </form>
+      <p class="sub" style="margin-top: var(--sp-6); display:none;" id="demo-hint"></p>
+    </div>
+  </div>
+
+  <script type="module" src="../js/admin/login.js"></script>
+</body>
+</html>

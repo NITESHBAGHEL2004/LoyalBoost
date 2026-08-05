@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Loyalty Card · LoyalBoost</title>
+<link rel="manifest" href="../assets/manifest.json">
+<meta name="theme-color" content="#0A0B10">
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/card.css">
+<link rel="stylesheet" href="../css/animations.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="card-screen">
+    <div class="container" id="card-root">
+      <div class="empty-state">
+        <div class="empty-icon">🪪</div>
+        <p>Loading your card…</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reward Popup -->
+  <div class="modal-backdrop" id="reward-modal-backdrop" aria-hidden="true">
+    <div class="glass reward-popup modal popup-in" id="reward-modal-body"></div>
+  </div>
+
+  <script type="module" src="../js/customer/card.js"></script>
+</body>
+</html>

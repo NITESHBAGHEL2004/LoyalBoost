@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customers · LoyalBoost</title>
+<link rel="stylesheet" href="../css/variables.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/admin.css">
+<link rel="stylesheet" href="../css/card.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="app-shell" id="app-shell"></div>
+
+  <!-- Add / Edit Customer Modal -->
+  <div class="modal-backdrop" id="customer-modal-backdrop" aria-hidden="true">
+    <div class="glass modal">
+      <div class="modal-header">
+        <h2 id="customer-modal-title">Add Customer</h2>
+        <button class="modal-close" id="customer-modal-close" aria-label="Close">×</button>
+      </div>
+      <form id="customer-form">
+        <input type="hidden" id="c-id">
+        <div class="field">
+          <label for="c-name">Customer Name</label>
+          <input class="input" id="c-name" required>
+        </div>
+        <div class="field">
+          <label for="c-mobile">Mobile Number</label>
+          <input class="input" id="c-mobile" type="tel" required>
+        </div>
+        <div class="field">
+          <label for="c-email">Email</label>
+          <input class="input" id="c-email" type="email">
+        </div>
+        <div class="field">
+          <label for="c-dob">Date of Birth</label>
+          <input class="input" id="c-dob" type="date">
+        </div>
+        <div class="field">
+          <label for="c-membership">Membership Level</label>
+          <select class="select" id="c-membership">
+            <option>Bronze</option><option>Silver</option><option>Gold</option><option>Platinum</option><option>VIP</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="c-notes">Notes</label>
+          <textarea class="input" id="c-notes" rows="2"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%;">Save Customer</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Card Modal -->
+  <div class="modal-backdrop" id="card-modal-backdrop" aria-hidden="true">
+    <div class="glass modal" style="width:min(440px,92vw);">
+      <div class="modal-header">
+        <h2>Loyalty Card</h2>
+        <button class="modal-close" id="card-modal-close" aria-label="Close">×</button>
+      </div>
+      <div id="card-modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="../js/admin/customers.js"></script>
+</body>
+</html>
