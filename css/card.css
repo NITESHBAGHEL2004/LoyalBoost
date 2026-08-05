@@ -58,6 +58,27 @@
 .wc-qr{ background:#fff; padding:6px; border-radius: 10px; }
 .wc-qr canvas, .wc-qr img{ display:block; width:74px; height:74px; }
 .wc-actions{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+.wc-info-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-end;
+  text-align: right;
+  max-width: 220px;
+}
+.wc-info-line {
+  font-size: 11px;
+  opacity: 0.9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+.wc-info-name {
+  font-weight: 700;
+  font-size: 12px;
+  opacity: 1;
+}
 
 /* perforation notches for wallet feel */
 .wallet-card .notch{ position:absolute; width:22px; height:22px; background: var(--bg); border-radius:50%; top:50%; transform: translateY(-50%); z-index:3; }

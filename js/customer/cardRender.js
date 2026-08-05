@@ -58,8 +58,10 @@ export function renderWalletCard(customer, settings) {
       <div class="wc-progress-label">${filled} of ${required} visits completed${filled >= required ? ' — reward unlocked!' : ''}</div>
       <div class="wc-bottom">
         <div class="wc-qr" id="wc-qr"></div>
-        <div class="wc-actions">
-          <span style="font-size:11px; opacity:.7;">Scan to view card</span>
+        <div class="wc-info-lines">
+          <div class="wc-info-line wc-info-name">🏢 ${escapeHtml(settings.businessName || 'LoyalBoost')}</div>
+          <div class="wc-info-line wc-info-address">📍 ${escapeHtml(settings.address || 'Main Location')}</div>
+          <div class="wc-info-line wc-info-phone">📞 ${escapeHtml(settings.phone || 'Contact Business')}</div>
         </div>
       </div>
     </div>
