@@ -37,13 +37,40 @@ async function call(action, payload = {}) {
   return callBackend(action, payload);
 }
 
+let settingsCache = null;
+
 export const api = {
   isDemo,
 
   login: (username, password) => call('login', { username, password }),
 
-  getSettings: () => call('getSettings'),
-  saveSettings: (settings) => call('saveSettings', { settings }),
+  getSettings: async (forceRefresh = false) => {
+    if (!forceRefresh && settingsCache) return settingsCache;
+    try {
+      const stored = sessionStorage.getItem('lb_settings_cache');
+      if (!forceRefresh && stored) {
+        settingsCache = JSON.parse(stored);
+        // Refresh in background silently
+        call('getSettings').then(fresh => {
+          settingsCache = fresh;
+          try { sessionStorage.setItem('lb_settings_cache', JSON.stringify(fresh)); } catch (e) {}
+        }).catch(() => {});
+        return settingsCache;
+      }
+    } catch (e) {}
+
+    const fresh = await call('getSettings');
+    settingsCache = fresh;
+    try { sessionStorage.setItem('lb_settings_cache', JSON.stringify(fresh)); } catch (e) {}
+    return fresh;
+  },
+
+  saveSettings: async (settings) => {
+    const updated = await call('saveSettings', { settings });
+    settingsCache = updated;
+    try { sessionStorage.setItem('lb_settings_cache', JSON.stringify(updated)); } catch (e) {}
+    return updated;
+  },
 
   getDashboardStats: () => call('getDashboardStats'),
 

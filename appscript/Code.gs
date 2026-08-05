@@ -108,11 +108,17 @@ function verifyToken(token) {
 // Settings
 // ============================================================
 function actionGetSettings() {
+  const cache = CacheService.getScriptCache();
+  const cached = cache.get('settings_cache');
+  if (cached) {
+    try { return JSON.parse(cached); } catch (e) {}
+  }
   const sheet = getSheet(SHEET_SETTINGS);
   const rows = sheet.getDataRange().getValues();
   const settings = {};
   for (let i = 1; i < rows.length; i++) settings[rows[i][0]] = rows[i][1];
   settings.requiredVisits = Number(settings.requiredVisits) || 8;
+  try { cache.put('settings_cache', JSON.stringify(settings), 600); } catch (e) {}
   return settings;
 }
 
@@ -128,6 +134,7 @@ function actionSaveSettings(settings) {
     if (keyRow[key]) sheet.getRange(keyRow[key], 2).setValue(value);
     else sheet.appendRow([key, value]);
   });
+  CacheService.getScriptCache().remove('settings_cache');
   return actionGetSettings();
 }
 

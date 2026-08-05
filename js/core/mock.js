@@ -40,7 +40,7 @@ function load() {
   return fresh;
 }
 function save(db) { localStorage.setItem(LS_KEY, JSON.stringify(db)); }
-function delay(ms = 220) { return new Promise(r => setTimeout(r, ms)); }
+function delay(ms = 15) { return new Promise(r => setTimeout(r, ms)); }
 function nextCustomerId(db) {
   db.seq += 1;
   return 'LB' + String(db.seq).padStart(5, '0');
