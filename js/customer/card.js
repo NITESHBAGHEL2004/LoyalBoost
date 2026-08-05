@@ -63,8 +63,10 @@ function renderCard(customer, settings, coupon, history) {
     const reward = settings.rewardName || 'Free Reward';
     const visits = customer.visitCount || 0;
     const required = customer.requiredVisits || settings.requiredVisits || 8;
+    const visitsKeycap = String(visits).split('').map(d => (d >= '0' && d <= '9' ? d + '\uFE0F\u20E3' : d)).join('');
+    const requiredKeycap = String(required).split('').map(d => (d >= '0' && d <= '9' ? d + '\uFE0F\u20E3' : d)).join('');
 
-    const text = `Hello ${customer.name}! 👋✨\n\nWelcome to *${bizName}*! 🏢🎉\n\nYou have completed *${visits}/${required}* visits towards your reward: *${reward}* 🎁\n\nTrack your stamps and view your digital loyalty card anytime here:\n👇\n${link}`;
+    const text = `✨ *Welcome to ${bizName}!*\n\nHi *${customer.name}*, thank you for becoming a valued customer! ❤️\n\n🪪 *Your Digital Loyalty Card is now active.*\n\n📍 *Current Progress:* *${visitsKeycap} / ${requiredKeycap}* Visits\n🎁 *Unlock Reward:* *${reward}*\n\nEvery eligible visit earns you a stamp. Complete all *${required} visits* to claim your reward!\n\n*Access your loyalty card anytime:*\n👇\n${link}\n\nThank you for your support. We can't wait to welcome you back! 🌟`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
   });
 
